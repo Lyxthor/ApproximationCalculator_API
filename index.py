@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi import APIRouter
+
 from fastapi.middleware.cors import CORSMiddleware
 from controllers.Methods import Bisection
 from pydantic import BaseModel
@@ -20,7 +21,9 @@ app.add_middleware(
 )
 
 
-
+@router.get('/')
+def home() :
+    return {"message": "Welcome to Approximation API. Where this is just wasteland"}
 @router.post('/bisection')
 def bisection(vars : BisectionVars) :
     # return {"var" : "test"}
@@ -33,5 +36,5 @@ def tables() :
 
 app.include_router(router=router)
 
-if __name__ == "__main__" :
-    config = uvicorn.run(app, host="127.0.0.1", port=8000)
+# if __name__ == "__main__" :
+#     config = uvicorn.run(app, host="127.0.0.1", port=8000)
